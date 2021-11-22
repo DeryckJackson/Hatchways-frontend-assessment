@@ -3,6 +3,6 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'https://api.hatchways.io/assessment';
 
-export const getStudents = () => () => {
+export const getStudents = () => (dispatch) => {
 
 }
