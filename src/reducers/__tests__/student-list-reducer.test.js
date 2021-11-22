@@ -17,7 +17,7 @@ describe('studentReducer()', () => {
   });
 
   it('should return student list state', () => {
-    const expectedState = [
+    const expectedStudentList = [
       {
         name: 'foo',
         email: 'foo@foobar.com'
@@ -30,11 +30,11 @@ describe('studentReducer()', () => {
 
     const action = {
       type: c.GET_STUDENTS,
-      payload: expectedState
+      payload: expectedStudentList
     };
 
-    const state = studentReducer(action);
+    const state = studentReducer(null, action);
 
-    expect(state).toEqual(expectedState);
+    expect(state).toEqual({ studentList: expectedStudentList });
   });
 });

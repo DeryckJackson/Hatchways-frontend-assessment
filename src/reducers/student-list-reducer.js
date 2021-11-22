@@ -6,6 +6,11 @@ const initialState = {
 
 export function studentReducer(state = initialState, action) {
   switch (action.type) {
+    case c.GET_STUDENTS:
+      return {
+        ...state,
+        studentList: action.payload,
+      };
     default:
       return state;
   }
