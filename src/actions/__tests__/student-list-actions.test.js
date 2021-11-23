@@ -12,18 +12,16 @@ describe('getStudents()', () => {
   });
 
   it('should call axios.get and dispatch return data', async () => {
-    const mockData = {
-      data: '12345'
-    };
-
-    axios.get.mockImplementation({ data: mockData });
+    const mockData = '12345'
 
     const expectedDispatchObj = {
       type: c.GET_STUDENTS,
-      payload: mockData.data,
+      payload: mockData
     };
 
-    await getStudents()(mockDispatch)
+    axios.get.mockResolvedValue({ data: { students: mockData } });
+
+    await getStudents()(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(expectedDispatchObj);
   });
