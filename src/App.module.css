@@ -1,0 +1,24 @@
+@media (min-width: 1170px) {
+  .App {
+    background-color: white;
+    position: absolute;
+    height: 800px;
+    width: 1150px;
+    top: 9%; 
+    left: 20%;
+    margin: 0 auto;
+    border-radius: 10px;
+    -webkit-box-shadow: rgba(0,0,0,0.3) 0px 0 4px;
+    -moz-box-shadow: rgba(0,0,0,0.3) 0 0 4px;
+    box-shadow: rgba(0,0,0,0.3) 0 0 4px;
+  }
+  
+  .Content {
+    height: 799px;
+    overflow: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+}

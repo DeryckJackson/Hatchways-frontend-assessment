@@ -1,10 +1,12 @@
-import './App.css';
-import StudentList from './components/StudentList';
+import styles from './App.module.css';
+import StudentList from './components/StudentList/StudentList';
 
 function App() {
   return (
-    <div className="App">
-      <StudentList />
+    <div className={styles.App}>
+      <div className={styles.Content}>
+        <StudentList />
+      </div>
     </div>
   );
 }

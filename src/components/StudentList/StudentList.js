@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { getStudents } from '../actions/student-list-actions'
+import { getStudents } from '../../actions/student-list-actions'
+import PropTypes from 'prop-types';
+import styles from './StudentList.module.css';
 
 class StudentList extends Component {
   componentDidMount() {
@@ -14,13 +16,13 @@ class StudentList extends Component {
   render() {
     if (this.props.studentList.length === 0) {
       return (
-        <div>Loading...</div>
+        <div className={styles.Student} data-testid="StudentList">Loading...</div>
       )
     } else {
       return (
         <Fragment>
           {this.props.studentList.map(student => (
-            <div>
+            <div className={styles.Student} data-testid="StudentList">
               <img src={student.pic} alt="" />
               <h1>{student.firstName} {student.lastName}</h1>
               <p>Email: {student.email}</p>
@@ -34,6 +36,11 @@ class StudentList extends Component {
     }
   }
 }
+
+StudentList.propTypes = {
+  studentList: PropTypes.array,
+  getStudents: PropTypes.func
+};
 
 export const mapStateToProps = (state: RootReducerState): MapStateToProps => {
   return {
