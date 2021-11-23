@@ -6,7 +6,6 @@ axios.defaults.baseURL = 'https://api.hatchways.io/assessment';
 export const getStudents = () => async (dispatch) => {
   try {
     const res = await axios.get("/students");
-    console.log("action is working")
     dispatch({
       type: c.GET_STUDENTS,
       payload: res.data.students
