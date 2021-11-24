@@ -38,7 +38,7 @@ describe('studentReducer()', () => {
 
     const result = studentReducer(null, action);
 
-    expect(result).toEqual({ studentList: mockStudentList });
+    expect(result).toEqual({ studentList: mockStudentList, filteredStudentList: mockStudentList });
   });
 
   it('should return correct filtered student list', () => {

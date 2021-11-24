@@ -11,12 +11,13 @@ export function studentReducer(state = initialState, action) {
       return {
         ...state,
         studentList: action.payload,
+        filteredStudentList: action.payload
       };
     case c.SEARCH_STUDENTS:
       return {
         ...state,
         filteredStudentList: state.studentList.filter(
-          student => student.firstName === action.payload || student.lastName === action.payload
+          student => student.firstName.toLowerCase().includes(action.payload) || student.lastName.toLowerCase().includes(action.payload)
         )
       }
     default:

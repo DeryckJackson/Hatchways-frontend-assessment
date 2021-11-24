@@ -9,20 +9,21 @@ class StudentList extends Component {
     this.props.getStudents()
   }
 
-  gradeReducer(sum, previousGrade) {
+  gradeAdder(sum, previousGrade) {
     return parseInt(sum) + parseInt(previousGrade);
   }
 
   render() {
-    if (this.props.studentList.length === 0) {
+    if (this.props.filteredStudentList.length === 0) {
       return (
-        <div className={styles.StudentList} data-testid="StudentList">Loading...</div>
+        <div className={styles.StudentList} data-testid="StudentList">
+        </div>
       )
     } else {
       return (
         <Fragment>
-          {this.props.studentList.map(student => (
-            <div className={styles.Hr}>
+          {this.props.filteredStudentList.map(student => (
+            <div className={styles.Hr} key={student.id}>
               <div className={styles.StudentList} data-testid="StudentList">
                 <div className={styles.ProfilePic}>
                   <img src={student.pic} alt="" />
@@ -32,7 +33,7 @@ class StudentList extends Component {
                   <p>Email: {student.email}</p>
                   <p>Company: {student.company}</p>
                   <p>Skill: {student.skill}</p>
-                  <p>Average: {student.grades.reduce(this.gradeReducer) / student.grades.length}</p>
+                  <p>Average: {student.grades.reduce(this.gradeAdder) / student.grades.length}</p>
                 </div>
               </div>
             </div>
@@ -44,13 +45,13 @@ class StudentList extends Component {
 }
 
 StudentList.propTypes = {
-  studentList: PropTypes.array,
+  filteredStudentList: PropTypes.array,
   getStudents: PropTypes.func
 };
 
-export const mapStateToProps = (state: RootReducerState): MapStateToProps => {
+export const mapStateToProps = (state) => {
   return {
-    studentList: state.studentReducer.studentList
+    filteredStudentList: state.studentReducer.filteredStudentList,
   };
 };
 
