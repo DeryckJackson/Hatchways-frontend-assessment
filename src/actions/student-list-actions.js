@@ -15,3 +15,10 @@ export const getStudents = () => async (dispatch) => {
     console.error(err)
   }
 }
+
+export const searchStudents = (searchInput) => {
+  return {
+    type: c.SEARCH_STUDENTS,
+    payload: searchInput,
+  };
+}

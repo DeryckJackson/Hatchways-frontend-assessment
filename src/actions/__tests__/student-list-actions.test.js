@@ -1,4 +1,4 @@
-import { getStudents } from "../student-list-actions";
+import { getStudents, searchStudents } from "../student-list-actions";
 import * as c from "../action-constants";
 import * as axios from 'axios'
 
@@ -24,5 +24,19 @@ describe('getStudents()', () => {
     await getStudents()(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(expectedDispatchObj);
+  });
+});
+
+describe('searchStudents()', () => {
+  it('should return correct type and payload', () => {
+    const searchInput = "Bob"
+    const expectedPayload = {
+      type: c.SEARCH_STUDENTS,
+      payload: searchInput
+    }
+
+    const result = searchStudents(searchInput);
+
+    expect(result).toEqual(expectedPayload)
   });
 });

@@ -2,39 +2,67 @@ import { studentReducer } from "../student-list-reducer";
 import * as c from "../../actions/action-constants";
 
 describe('studentReducer()', () => {
+  const mockStudentList = [
+    {
+      firstName: 'foo',
+      lastName: 'bar',
+      email: 'foo@foobar.com'
+    },
+    {
+      firstName: 'student',
+      lastName: 'raow',
+      email: 'student2@foobar.com'
+    }
+  ];
+
   it('should return default state', () => {
     const action = {
       type: 'NONE'
     };
 
     const expectedState = {
-      studentList: []
+      studentList: [],
+      filteredStudentList: []
     };
 
-    const state = studentReducer(expectedState, action);
+    const result = studentReducer(expectedState, action);
 
-    expect(state).toEqual(expectedState);
+    expect(result).toEqual(expectedState);
   });
 
   it('should return student list state', () => {
-    const expectedStudentList = [
-      {
-        name: 'foo',
-        email: 'foo@foobar.com'
-      },
-      {
-        name: 'student2',
-        email: 'student2@foobar.com'
-      }
-    ];
-
     const action = {
       type: c.GET_STUDENTS,
-      payload: expectedStudentList
+      payload: mockStudentList
     };
 
-    const state = studentReducer(null, action);
+    const result = studentReducer(null, action);
 
-    expect(state).toEqual({ studentList: expectedStudentList });
+    expect(result).toEqual({ studentList: mockStudentList, filteredStudentList: mockStudentList });
+  });
+
+  it('should return correct filtered student list', () => {
+    const action = {
+      type: c.SEARCH_STUDENTS,
+      payload: "foo"
+    };
+
+    const state = {
+      studentList: mockStudentList,
+      filteredStudentList: []
+    };
+
+    const result = studentReducer(state, action);
+
+    const expectedStudent = [
+      {
+        firstName: 'foo',
+        lastName: 'bar',
+        email: 'foo@foobar.com'
+      }
+    ]
+
+    expect(result.studentList).toEqual(mockStudentList);
+    expect(result.filteredStudentList).toEqual(expectedStudent)
   });
 });
