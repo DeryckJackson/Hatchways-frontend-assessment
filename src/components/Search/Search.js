@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from './Search.module.css';
-import { searchStudents } from '../../actions/student-list-actions'
+import styles from './Search.module.scss';
+import { searchStudents } from '../../actions/student-list-actions';
 
 class Search extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       value: ''
     };
@@ -23,7 +23,7 @@ class Search extends Component {
       <div className={styles.Search} data-testid="Search">
         <input role="search" placeholder="Search by name" type="text" value={this.state.value} onChange={this.handleChange} />
       </div>
-    )
+    );
   }
 };
 

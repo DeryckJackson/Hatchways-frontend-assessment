@@ -7,7 +7,7 @@ const Student = ({ student }) => {
 
   const gradeAdder = (sum, previousGrade) => {
     return parseInt(sum) + parseInt(previousGrade);
-  }
+  };
 
   return (
     <div className={styles.Hr} key={student.id}>
@@ -20,22 +20,22 @@ const Student = ({ student }) => {
           <p>Email: {student.email}</p>
           <p>Company: {student.company}</p>
           <p>Skill: {student.skill}</p>
-          <p>Average: {student.grades.reduce(gradeAdder) / student.grades.length}</p>
+          <p data-testid="average">Average: {student.grades.reduce(gradeAdder) / student.grades.length}</p>
           {showMinusAndGrades ?
-            <div className={styles.Grades}>
+            <div data-testid="gradeList" className={styles.Grades}>
               {student.grades.map((e, i) => (
-                <p>Test {i + 1}: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{e}%</p>
+                <p key={i}>Test {i + 1}: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{e}%</p>
               ))}
             </div>
             : null
           }
         </div>
         {showMinusAndGrades ?
-          <button className={styles.ButtonMinus} onClick={() => { setShowMinusAndGrades(false) }} /> :
-          <button className={styles.ButtonPlus} onClick={() => { setShowMinusAndGrades(true) }} />}
+          <button data-testid="buttonMinus" className={styles.ButtonMinus} onClick={() => { setShowMinusAndGrades(false); }} /> :
+          <button data-testid="buttonPlus" className={styles.ButtonPlus} onClick={() => { setShowMinusAndGrades(true); }} />}
       </div>
     </div>
-  )
+  );
 };
 
 Student.propTypes = {

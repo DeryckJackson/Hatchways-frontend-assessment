@@ -25,7 +25,7 @@ describe('studentReducer()', () => {
       filteredStudentList: []
     };
 
-    const result = studentReducer(expectedState, action);
+    const result = studentReducer(undefined, action);
 
     expect(result).toEqual(expectedState);
   });
