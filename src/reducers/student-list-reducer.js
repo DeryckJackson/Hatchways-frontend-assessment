@@ -3,7 +3,7 @@ import * as c from "../actions/action-constants";
 const initialState = {
   studentList: [],
   filteredStudentList: []
-}
+};
 
 export function studentReducer(state = initialState, action) {
   switch (action.type) {
@@ -19,7 +19,7 @@ export function studentReducer(state = initialState, action) {
         filteredStudentList: state.studentList.filter(
           student => student.firstName.toLowerCase().includes(action.payload) || student.lastName.toLowerCase().includes(action.payload)
         )
-      }
+      };
     default:
       return state;
   }

@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { getStudents } from '../../actions/student-list-actions'
+import { getStudents } from '../../actions/student-list-actions';
 import PropTypes from 'prop-types';
 import styles from './StudentList.module.scss';
 import Student from '../Student/Student';
 
 class StudentList extends Component {
   componentDidMount() {
-    this.props.getStudents()
+    this.props.getStudents();
   }
 
   render() {
@@ -15,7 +15,7 @@ class StudentList extends Component {
       return (
         <div className={styles.StudentList} data-testid="StudentList">
         </div>
-      )
+      );
     } else {
       return (
         <Fragment>
@@ -23,7 +23,7 @@ class StudentList extends Component {
             <Student student={student} />
           ))}
         </Fragment>
-      )
+      );
     }
   }
 }
