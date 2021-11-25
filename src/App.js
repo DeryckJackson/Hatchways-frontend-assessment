@@ -1,4 +1,4 @@
-import styles from './App.module.css';
+import styles from './App.module.scss';
 import Search from './components/Search/Search';
 import StudentList from './components/StudentList/StudentList';
 

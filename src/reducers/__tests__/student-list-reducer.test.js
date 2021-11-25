@@ -25,7 +25,7 @@ describe('studentReducer()', () => {
       filteredStudentList: []
     };
 
-    const result = studentReducer(expectedState, action);
+    const result = studentReducer(undefined, action);
 
     expect(result).toEqual(expectedState);
   });
@@ -60,9 +60,9 @@ describe('studentReducer()', () => {
         lastName: 'bar',
         email: 'foo@foobar.com'
       }
-    ]
+    ];
 
     expect(result.studentList).toEqual(mockStudentList);
-    expect(result.filteredStudentList).toEqual(expectedStudent)
+    expect(result.filteredStudentList).toEqual(expectedStudent);
   });
 });
