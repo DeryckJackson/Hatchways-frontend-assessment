@@ -20,7 +20,7 @@ const Student = ({ student }) => {
           <p>Email: {student.email}</p>
           <p>Company: {student.company}</p>
           <p>Skill: {student.skill}</p>
-          <p data-testid="average">Average: {student.grades.reduce(gradeAdder) / student.grades.length}</p>
+          <p data-testid="average">Average: {student.grades.reduce(gradeAdder) / student.grades.length}%</p>
           {showMinusAndGrades ?
             <div data-testid="gradeList" className={styles.Grades}>
               {student.grades.map((e, i) => (
