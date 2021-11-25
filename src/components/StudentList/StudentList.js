@@ -20,7 +20,7 @@ class StudentList extends Component {
       return (
         <Fragment>
           {this.props.filteredStudentList.map(student => (
-            <Student student={student} />
+            <Student student={student} key={student.id} />
           ))}
         </Fragment>
       );

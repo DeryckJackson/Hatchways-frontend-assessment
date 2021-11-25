@@ -10,7 +10,7 @@ const Student = ({ student }) => {
   };
 
   return (
-    <div className={styles.Hr} key={student.id}>
+    <div className={styles.Hr}>
       <div className={styles.Student} data-testid="Student">
         <div className={styles.ProfilePic}>
           <img src={student.pic} alt="" />
