@@ -47,19 +47,19 @@
   margin-right: 1em;
   margin-top: .5em;
   border: none;
-	background-color: #fff;
-	height: 60px;
-	width: 60px;
-	border-radius: 999px;
-	position: relative;
-	
-	&:after,
-	&:before {
-		content: "";
-		background-color: grey;
-		position: absolute;
+  background-color: #fff;
+  height: 60px;
+  width: 60px;
+  border-radius: 999px;
+  position: relative;
+  
+  &:after,
+  &:before {
+    content: "";
+    background-color: grey;
+    position: absolute;
     transition: 150ms all ease-out;
-	}
+  }
 
   &:after {
     top: 10px;
@@ -78,8 +78,8 @@
 
   &:hover {
     &:after,
-	  &:before {
-		background-color: black;
+    &:before {
+    background-color: black;
     cursor: pointer;
     }
   }
@@ -90,19 +90,19 @@
   margin-right: 1em;
   margin-top: .5em;
   border: none;
-	background-color: #fff;
-	height: 60px;
-	width: 60px;
-	border-radius: 999px;
-	position: relative;
-	
-	&:after,
-	&:before {
-		content: "";
-		background-color: grey;
-		position: absolute;
+  background-color: #fff;
+  height: 60px;
+  width: 60px;
+  border-radius: 999px;
+  position: relative;
+  
+  &:after,
+  &:before {
+    content: "";
+    background-color: grey;
+    position: absolute;
     transition: 150ms all ease-out;
-	}
+  }
 
   &:before {
     top: 27px;
@@ -114,8 +114,8 @@
 
   &:hover {
     &:after,
-	  &:before {
-		background-color: black;
+    &:before {
+    background-color: black;
     cursor: pointer;
     }
   }
