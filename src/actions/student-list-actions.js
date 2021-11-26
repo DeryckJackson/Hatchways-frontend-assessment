@@ -3,6 +3,12 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.hatchways.io/assessment';
 
+export const addTag = (tag) => {
+  return {
+
+  };
+};
+
 export const getStudents = () => async (dispatch) => {
   try {
     const res = await axios.get("/students");

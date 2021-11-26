@@ -1,8 +1,27 @@
-import { getStudents, searchStudents, searchTags } from "../student-list-actions";
+import { addTag, getStudents, searchStudents, searchTags } from "../student-list-actions";
 import * as c from "../action-constants";
 import * as axios from 'axios';
 
 jest.mock('axios');
+
+describe('addTags', () => {
+  it('should return correct type and payload', () => {
+    const payload = {
+      id: 1,
+      tag: 'foo'
+    };
+
+    const expectedPayload = {
+      type: c.ADD_TAG,
+      payload: payload
+    };
+
+    const result = addTag(expectedPayload);
+
+    expect(result).toEqual(expectedPayload);
+  });
+
+});
 
 describe('getStudents()', () => {
   const mockDispatch = jest.fn();
