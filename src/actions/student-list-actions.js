@@ -3,9 +3,10 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.hatchways.io/assessment';
 
-export const addTag = (tag) => {
+export const addTag = (payload) => {
   return {
-
+    type: c.ADD_TAG,
+    payload: payload
   };
 };
 

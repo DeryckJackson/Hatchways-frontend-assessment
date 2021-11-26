@@ -16,7 +16,7 @@ describe('addTags', () => {
       payload: payload
     };
 
-    const result = addTag(expectedPayload);
+    const result = addTag(payload);
 
     expect(result).toEqual(expectedPayload);
   });
