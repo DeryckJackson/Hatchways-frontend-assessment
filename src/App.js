@@ -7,6 +7,7 @@ function App() {
   return (
     <div className={styles.App}>
       <Search dispatchAction={c.SEARCH_STUDENTS} placeholder="Search by name" />
+      <Search dispatchAction={c.SEARCH_TAGS} placeholder="Search by tag" />
       <StudentList />
     </div>
   );
