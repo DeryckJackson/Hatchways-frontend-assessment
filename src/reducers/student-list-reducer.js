@@ -9,6 +9,16 @@ const initialState = {
 
 export function studentReducer(state = initialState, action) {
   switch (action.type) {
+    case c.ADD_TAG:
+      const { id, tag } = action.payload;
+      const index = state.studentList.findIndex(student => student.id === id);
+      state.studentList[index] = {
+        ...state.studentList[index],
+        tags: `${state.studentList[index].tags}"${tag}"`
+      };
+      return {
+        ...state,
+      };
     case c.GET_STUDENTS:
       return {
         ...state,

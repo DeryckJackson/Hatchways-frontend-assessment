@@ -4,12 +4,14 @@ import * as c from "../../actions/action-constants";
 describe('studentReducer()', () => {
   const mockStudentList = [
     {
+      id: 1,
       firstName: 'foo',
       lastName: 'bar',
       email: 'foo@foobar.com',
       tags: '"tag1""tag2"'
     },
     {
+      id: 2,
       firstName: 'right',
       lastName: 'raow',
       email: 'student2@foobar.com',
@@ -90,12 +92,15 @@ describe('studentReducer()', () => {
   it('should add tag to selected student', () => {
     const action = {
       type: c.ADD_TAG,
-      payload: 'added tag'
+      payload: {
+        id: 1,
+        tag: 'added tag'
+      }
     };
 
     const expectedStudent = {
       ...mockStudentList[0],
-      tags: `${mockStudentList[0].tags}"${action.payload}"`
+      tags: `${mockStudentList[0].tags}"${action.payload.tag}"`
     };
 
     const expectedState = {
