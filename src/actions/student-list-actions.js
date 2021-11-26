@@ -25,6 +25,7 @@ export const searchStudents = (searchInput) => {
 
 export const searchTags = (searchInput) => {
   return {
-
+    type: c.SEARCH_TAGS,
+    payload: searchInput,
   };
 };
