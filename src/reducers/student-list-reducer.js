@@ -4,7 +4,7 @@ const initialState = {
   studentList: [],
   filteredStudentList: [],
   searchNameValue: '',
-  searchTagValue: ''
+  searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
 };
 
 export function studentReducer(state = initialState, action) {
@@ -16,10 +16,25 @@ export function studentReducer(state = initialState, action) {
         filteredStudentList: action.payload
       };
     case c.SEARCH_STUDENTS:
+      state.searchNameValue = action.payload;
       return {
         ...state,
         filteredStudentList: state.studentList.filter(
-          student => student.firstName.toLowerCase().includes(action.payload) || student.lastName.toLowerCase().includes(action.payload)
+          student => (
+            student.firstName.toLowerCase().includes(state.searchNameValue) ||
+            student.lastName.toLowerCase().includes(state.searchNameValue)) &&
+            state.searchTagValue.test(student.tags)
+        )
+      };
+    case c.SEARCH_TAGS:
+      state.searchTagValue = new RegExp(`[^"]*${action.payload}[^"]*`, 'gm');
+      return {
+        ...state,
+        filteredStudentList: state.studentList.filter(
+          student => (
+            student.firstName.toLowerCase().includes(state.searchNameValue) ||
+            student.lastName.toLowerCase().includes(state.searchNameValue)) &&
+            state.searchTagValue.test(student.tags)
         )
       };
     default:

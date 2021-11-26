@@ -26,7 +26,7 @@ describe('studentReducer()', () => {
       studentList: [],
       filteredStudentList: [],
       searchNameValue: '',
-      searchTagValue: ''
+      searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
     };
 
     const result = studentReducer(undefined, action);
@@ -44,7 +44,7 @@ describe('studentReducer()', () => {
       studentList: mockStudentList,
       filteredStudentList: mockStudentList,
       searchNameValue: '',
-      searchTagValue: ''
+      searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
     };
 
     const result = studentReducer(undefined, action);
@@ -60,7 +60,9 @@ describe('studentReducer()', () => {
 
     const state = {
       studentList: mockStudentList,
-      filteredStudentList: []
+      filteredStudentList: [],
+      searchNameValue: '',
+      searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
     };
 
     const result = studentReducer(state, action);
