@@ -6,12 +6,14 @@ describe('studentReducer()', () => {
     {
       firstName: 'foo',
       lastName: 'bar',
-      email: 'foo@foobar.com'
+      email: 'foo@foobar.com',
+      tags: '"tag1""tag2"'
     },
     {
-      firstName: 'student',
+      firstName: 'right',
       lastName: 'raow',
-      email: 'student2@foobar.com'
+      email: 'student2@foobar.com',
+      tags: '"foo""bar"'
     }
   ];
 
@@ -22,7 +24,9 @@ describe('studentReducer()', () => {
 
     const expectedState = {
       studentList: [],
-      filteredStudentList: []
+      filteredStudentList: [],
+      searchNameValue: '',
+      searchTagValue: ''
     };
 
     const result = studentReducer(undefined, action);
@@ -36,9 +40,16 @@ describe('studentReducer()', () => {
       payload: mockStudentList
     };
 
-    const result = studentReducer(null, action);
+    const expectedState = {
+      studentList: mockStudentList,
+      filteredStudentList: mockStudentList,
+      searchNameValue: '',
+      searchTagValue: ''
+    };
 
-    expect(result).toEqual({ studentList: mockStudentList, filteredStudentList: mockStudentList });
+    const result = studentReducer(undefined, action);
+
+    expect(result).toEqual(expectedState);
   });
 
   it('should return correct filtered student list', () => {
@@ -54,15 +65,30 @@ describe('studentReducer()', () => {
 
     const result = studentReducer(state, action);
 
-    const expectedStudent = [
-      {
-        firstName: 'foo',
-        lastName: 'bar',
-        email: 'foo@foobar.com'
-      }
-    ];
+    const expectedStudent = [mockStudentList[0]];
+
 
     expect(result.studentList).toEqual(mockStudentList);
+    expect(result.filteredStudentList).toEqual(expectedStudent);
+  });
+
+  it('should search by tag and return correct filtered student list', () => {
+    const action = {
+      type: c.SEARCH_TAGS,
+      payload: 'tag'
+    };
+
+    const state = {
+      studentList: mockStudentList,
+      filteredStudentList: [],
+      searchNameValue: '',
+      searchTagValue: ''
+    };
+
+    const expectedStudent = [mockStudentList[0]];
+
+    const result = studentReducer(state, action);
+
     expect(result.filteredStudentList).toEqual(expectedStudent);
   });
 });

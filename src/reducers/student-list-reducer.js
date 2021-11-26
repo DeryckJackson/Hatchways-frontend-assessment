@@ -3,6 +3,8 @@ import * as c from "../actions/action-constants";
 const initialState = {
   studentList: [],
   filteredStudentList: [],
+  searchNameValue: '',
+  searchTagValue: ''
 };
 
 export function studentReducer(state = initialState, action) {
