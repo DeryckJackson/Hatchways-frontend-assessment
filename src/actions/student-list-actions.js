@@ -22,3 +22,9 @@ export const searchStudents = (searchInput) => {
     payload: searchInput,
   };
 };
+
+export const searchTags = (searchInput) => {
+  return {
+
+  };
+};
