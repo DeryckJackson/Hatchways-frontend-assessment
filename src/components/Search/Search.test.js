@@ -4,6 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import Search from './Search';
 import store from '../../store';
 import { Provider } from 'react-redux';
+import * as c from '../../actions/action-constants';
 
 describe('<Search />', () => {
   it('should mount', () => {
@@ -19,7 +20,7 @@ describe('<Search />', () => {
   it('should fire change event and display text value sent', () => {
     render(
       <Provider store={store}>
-        <Search />
+        <Search dispatchAction={c.SEARCH_STUDENTS} />
       </Provider>
     );
 

@@ -2,7 +2,7 @@ import * as c from "../actions/action-constants";
 
 const initialState = {
   studentList: [],
-  filteredStudentList: []
+  filteredStudentList: [],
 };
 
 export function studentReducer(state = initialState, action) {

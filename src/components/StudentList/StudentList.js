@@ -19,9 +19,11 @@ class StudentList extends Component {
     } else {
       return (
         <Fragment>
-          {this.props.filteredStudentList.map(student => (
-            <Student student={student} key={student.id} />
-          ))}
+          <div className={styles.StudentList}>
+            {this.props.filteredStudentList.map(student => (
+              <Student student={student} key={student.id} />
+            ))}
+          </div>
         </Fragment>
       );
     }

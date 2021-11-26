@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './Search.module.scss';
 
-const Search = ({ dispatchAction }) => {
+const Search = ({ dispatchAction, placeholder }) => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ const Search = ({ dispatchAction }) => {
 
   return (
     <div className={styles.Search} data-testid="Search">
-      <input role="search" placeholder="Search by name" type="text" value={value} onChange={handleChange} />
+      <input role="search" placeholder={placeholder} type="text" value={value} onChange={handleChange} />
     </div>
   );
 
