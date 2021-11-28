@@ -40,7 +40,7 @@ describe('getStudents()', () => {
 
     axios.get.mockResolvedValue({ data: { students: mockData } });
 
-    await getStudents()(mockDispatch);
+    await getStudents(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(expectedDispatchObj);
   });

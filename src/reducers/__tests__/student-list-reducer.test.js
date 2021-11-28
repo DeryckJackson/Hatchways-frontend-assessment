@@ -2,29 +2,34 @@ import { studentReducer } from "../student-list-reducer";
 import * as c from "../../actions/action-constants";
 
 describe('studentReducer()', () => {
-  const mockStudentList = [
-    {
-      id: 1,
-      firstName: 'foo',
-      lastName: 'bar',
-      email: 'foo@foobar.com',
-      tags: '"tag1""tag2"'
-    },
-    {
-      id: 2,
-      firstName: 'right',
-      lastName: 'raow',
-      email: 'student2@foobar.com',
-      tags: '"foo""bar"'
-    }
-  ];
+  let mockStudentList;
+  let defaultState;
+  beforeEach(() => {
+    mockStudentList = [
+      {
+        id: 1,
+        firstName: 'foo',
+        lastName: 'bar',
+        email: 'foo@foobar.com',
+        tags: '"tag1""tag2"'
+      },
+      {
+        id: 2,
+        firstName: 'right',
+        lastName: 'raow',
+        email: 'student2@foobar.com',
+        tags: '"foo""bar"'
+      }
+    ];
 
-  const defaultState = {
-    studentList: mockStudentList,
-    filteredStudentList: [],
-    searchNameValue: '',
-    searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
-  };
+    defaultState = {
+      studentList: mockStudentList,
+      filteredStudentList: [],
+      searchNameValue: '',
+      searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
+    };
+  });
+
 
   it('should return default state', () => {
     const action = {
@@ -93,7 +98,7 @@ describe('studentReducer()', () => {
     const action = {
       type: c.ADD_TAG,
       payload: {
-        id: 1,
+        student: mockStudentList[0],
         tag: 'added tag'
       }
     };
