@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store';
+import { getStudents } from './actions/student-list-actions';
+
+
+store.dispatch(getStudents);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -10,7 +10,7 @@ export const addTag = (payload) => {
   };
 };
 
-export const getStudents = () => async (dispatch) => {
+export async function getStudents(dispatch) {
   try {
     const res = await axios.get("/students");
     dispatch({

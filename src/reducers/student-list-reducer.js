@@ -7,23 +7,30 @@ const initialState = {
   searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
 };
 
+function updateTag(array, student, tag) {
+  const updatedArray = array.map(s => {
+    if (s.id !== student.id) {
+      return s;
+    }
+
+    s.tags = `${s.tags}"${tag}"`;
+    return s;
+  });
+  return updatedArray;
+}
+
 export function studentReducer(state = initialState, action) {
   switch (action.type) {
     case c.ADD_TAG:
-      const { id, tag } = action.payload;
-      const index = state.studentList.findIndex(student => student.id === id);
-      state.studentList[index] = {
-        ...state.studentList[index],
-        tags: `${state.studentList[index].tags}"${tag}"`
-      };
       return {
         ...state,
+        studentList: updateTag(state.studentList, action.payload.student, action.payload.tag),
       };
     case c.GET_STUDENTS:
       return {
         ...state,
-        studentList: action.payload,
-        filteredStudentList: action.payload
+        studentList: action.payload.map(s => { s.tags = ''; return s; }),
+        filteredStudentList: action.payload.map(s => { s.tags = ''; return s; })
       };
     case c.SEARCH_STUDENTS:
       state.searchNameValue = action.payload;
