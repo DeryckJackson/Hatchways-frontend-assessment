@@ -2,10 +2,21 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Student from './Student';
+import { Provider, useDispatch } from 'react-redux';
+import store from '../../store';
+import * as c from '../../actions/action-constants';
+
+const mockDispatch = jest.fn();
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
+}));
 
 describe('<Student />', () => {
-  it('should toggle display of test grades after click event', () => {
-    const props = {
+  let props;
+
+  beforeEach(() => {
+    props = {
       student: {
         pic: 'imgurl',
         firstName: 'foo',
@@ -13,11 +24,16 @@ describe('<Student />', () => {
         email: 'fbar@email.com',
         company: 'Foobars R Us',
         skill: 'foobaring stuff together',
-        grades: [42, 88, 77]
+        grades: [42, 88, 77],
+        tags: '"tag"'
       }
     };
-
-    render(<Student {...props} />);
+  });
+  it('should toggle display of test grades after click event', () => {
+    render(
+      <Provider store={store}>
+        <Student {...props} />
+      </Provider>);
 
     const buttonPlus = screen.getByTestId('buttonPlus');
 
@@ -40,5 +56,52 @@ describe('<Student />', () => {
 
     expect(screen.queryByTestId('gradeList')).toBeFalsy();
     expect(screen.queryByTestId('buttonMinus')).toBeFalsy();
+  });
+
+  it('should handleSubmit event and add tag to student', () => {
+    render(
+      <Provider store={store}>
+        <Student {...props} />
+      </Provider>);
+
+    const tag = 'tag';
+    const { student } = props;
+    const expectedPayload = {
+      type: c.ADD_TAG,
+      payload: {
+        student,
+        tag
+      }
+    };
+
+    const tagInput = screen.getByTestId('tagInput');
+    fireEvent.change(tagInput, { target: { value: tag } });
+
+    expect(tagInput.value).toEqual(tag);
+
+    fireEvent.submit(screen.getByTestId('tagForm'));
+
+    mockDispatch.mockReturnValue('foo');
+
+    expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
+  });
+
+  it('should render tag', () => {
+    render(
+      <Provider store={store}>
+        <Student {...props} />
+      </Provider>);
+
+    expect(screen.getByTestId('tags')).toHaveTextContent('tag');
+  });
+
+  it('should not render tag', () => {
+    props.student.tags = '';
+    render(
+      <Provider store={store}>
+        <Student {...props} />
+      </Provider>);
+
+    expect(screen.queryByTestId('tags')).toBeFalsy();
   });
 });
