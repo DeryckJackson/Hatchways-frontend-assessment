@@ -85,4 +85,23 @@ describe('<Student />', () => {
 
     expect(mockDispatch).toHaveBeenCalledWith(expectedPayload);
   });
+
+  it('should render tag', () => {
+    render(
+      <Provider store={store}>
+        <Student {...props} />
+      </Provider>);
+
+    expect(screen.getByTestId('tags')).toHaveTextContent('tag');
+  });
+
+  it('should not render tag', () => {
+    props.student.tags = '';
+    render(
+      <Provider store={store}>
+        <Student {...props} />
+      </Provider>);
+
+    expect(screen.queryByTestId('tags')).toBeFalsy();
+  });
 });

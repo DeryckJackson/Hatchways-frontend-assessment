@@ -7,7 +7,7 @@ const initialState = {
   searchTagValue: new RegExp(`[^"]*[^"]*`, 'gm')
 };
 
-export function updateTag(array, student, tag) {
+function updateTag(array, student, tag) {
   const updatedArray = array.map(s => {
     if (s.id !== student.id) {
       return s;
