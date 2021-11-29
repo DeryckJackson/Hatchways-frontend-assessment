@@ -81,7 +81,7 @@ const Student = memo(({ student }) => {
 
 Student.propTypes = {
   student: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     pic: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,

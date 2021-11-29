@@ -1,4 +1,5 @@
 import * as c from "./action-constants";
+import { createMessage, returnErrors } from "./messages";
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.hatchways.io/assessment';
@@ -13,13 +14,13 @@ export const addTag = (payload) => {
 export const getStudents = async (dispatch) => {
   try {
     const res = await axios.get("/students");
+    dispatch(createMessage({ getStudents: "Fetched Students" }));
     dispatch({
       type: c.GET_STUDENTS,
       payload: res.data.students
     });
-    // TODO: Add proper error catching
   } catch (err) {
-    console.error(err);
+    dispatch(returnErrors(err.response.data, err.response.status));
   }
 };
 
